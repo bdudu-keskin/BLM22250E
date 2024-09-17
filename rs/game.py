@@ -27,6 +27,8 @@ class Game:
     self.movement= [False, False]
     self.last_inventory= []
 
+
+
     self.assets={
       'decor': load_images('tiles/decor'),
       'grass': load_images('tiles/grass'),
@@ -35,10 +37,10 @@ class Game:
       'player': load_image('entities/player.png'),
       'background': load_image('background.png'), 
       'clouds': load_images('clouds'),
+
       'enemy/idle': Animation(self.transform_player_sprite(load_images('entities/enemy/idle')), img_dur=6),
       'enemy/run': Animation(self.transform_player_sprite(load_images('entities/enemy/run')), img_dur=4),
       'player/idle': Animation(self.transform_player_sprite(load_images('entities/player/idle')), img_dur=6),
-      
       'player/run': Animation(self.transform_player_sprite(load_images('entities/player/_run')), img_dur=4),
       'player/jump': Animation(self.transform_player_sprite(load_images('entities/player/_jump'))),
       'player/slide': Animation(load_images('entities/player/slide')),
@@ -53,8 +55,9 @@ class Game:
       'items/dashBounce': Animation([load_image('entities/items/dashBounce.png')]),
       'items/downDash': Animation([load_image('entities/items/downDash.png')]),
       'items/coin': Animation(load_images('entities/items/coin')),
-
     }
+
+
 
     self.clouds = Clouds(self.assets['clouds'], count = 16)
     self.player = Player(self, (50,50), (8,15))
@@ -63,13 +66,16 @@ class Game:
     self.load_level(self.level)
     self.screenshake = 0
     
+
+
   def transform_player_sprite(self, surfaceList): 
     temp = [pygame.transform.scale(x, (43, 43))
             .subsurface(14, 14, 20, 20)
             for x in surfaceList]
-  
     
     return temp 
+
+
 
   def load_level(self, map_id):
     self.tilemap.load('rs/data/maps/' + str(map_id) + '.json')
@@ -106,7 +112,7 @@ class Game:
 
   def run(self):
     while True:
-      self.display.fill((0,0,0,0))
+      self.display.fill((0, 0, 0, 0))
       self.display_2.blit(self.assets['background'], (0, 0))
       self.screenshake = max(0,self.screenshake - 1)
 
